@@ -1,25 +1,46 @@
-// Задача 3. Ширина елемента
+// Задача 3. Конструктор рядків
 
 
-// Оголоси функцію getElementWidth, яка очікує три параметри, значення яких будуть задаватися під час її виклику: 
-// • content— перший параметр, ширина контенту 
-// • padding — другий параметр, значення горизонтального падінгу для кожної зі сторін 
-// • border — третій параметр, значення товщини бордера для кожної зі сторін 
-// Значення всіх параметрів будуть рядками формату Npx де N — це довільне число, ціле або дробове.
+// Напиши клас StringBuilder, який приймає один параметр initialValue — довільний рядок, який записується у приватну властивість value об'єкта, що створюється.
+
+// Оголоси наступні методи класу:
+
+// getValue() — повертає поточне значення приватної властивості value.
+// padEnd(str) — отримує параметр str (рядок) і додає його в кінець значення приватної властивості value об'єкта, який викликає цей метод.
+// padStart(str) — отримує параметр str (рядок) і додає його на початок значення приватної властивості value об'єкта, який викликає цей метод.
+// padBoth(str) — отримує параметр str (рядок) і додає його на початок і в кінець значення приватної властивості value об'єкта, який викликає цей метод.
 
 
-// Доповни код функції так, щоб вона повертала число —загальну ширину елемента. 
-// При розрахунку загальної ширини орієнтуйся на те, що значення box-sizing дорівнює border-box.
+class StringBuilder {
+    #value;
 
-function getElementWidth(content, padding, border) {
-    const contentWidth =  Number.parseFloat(content);
-    const paddingWidth = Number.parseFloat(padding);
-    const borderWidth = Number.parseFloat(border);
+    constructor(initialValue) {
+       this.#value = initialValue;
+    }
 
-    const elementWidth = contentWidth + 2 * ( paddingWidth  + borderWidth );
-    return elementWidth;
+    getValue() {
+       return this.#value;
+    }
+
+    padEnd(str) {
+       this.#value += str;
+    }
+
+    padStart(str) {
+       this.#value = `${str}${this.#value}`;
+    }
+
+    padBoth(str) {
+       this.#value = `${str}${this.#value}${str}`;
+    }
 }
 
-console.log(getElementWidth("50px", "8px", "4px")); // 74
-console.log(getElementWidth("60px", "12px", "8.5px")); // 101
-console.log(getElementWidth("200px", "0px", "0px")); // 200
+
+const builder = new StringBuilder(".");
+console.log(builder.getValue()); // "."
+builder.padStart("^");
+console.log(builder.getValue()); // "^."
+builder.padEnd("^");
+console.log(builder.getValue()); // "^.^"
+builder.padBoth("=");
+console.log(builder.getValue()); // "=^.^="

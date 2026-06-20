@@ -1,2 +1,3 @@
 # goit-js-hw-01
-FS-129. JS Module-1. Variables and types. Function basics
+
+FS-129. JS Module 6. Object-Oriented Programming. Classes
